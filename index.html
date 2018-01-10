@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SignUp Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container" style="margin-bottom: 10px;background: #e1d9d9;">
+        <div class="row">
+            <div class="col-sm-12" style="padding-right: 0px; padding-left: 0px;">
+                <div class="header" style="padding: 5px;background: #cdcdcd;padding-top: 32px;padding-left: 32px;padding-bottom: 28px;">
+                    <img src="logo.png" style="width: 45px;height: 45px;float:left;margin-right: 5px;"/>
+                    <h1 style="font-family: initial;font-size: 24px;color: white;margin-top: 8px;;">Nord Software</h1>
+                </div>
+            </div>
+        </div>
+     <div class="clearfix"></div>
+       <div class="alert alert-danger  col-md-6 col-md-offset-2" style="margin-top;50px !important;display: none;">
+   
+  </div>
+  <div class="clearfix"></div>
+  <br /><br />
+    <div class="alert alert-danger error_show col-md-6 col-md-offset-2" style="margin-top;50px !important;display: none;">
+    <strong>Error!</strong> All Fields are manadatory.
+  </div>
+  <div class="clearfix"></div>
+    <div class="row">
+        <div class="particate" style="width: 912px;height: 33px;margin: 0 auto;">
+	    <h1 style="font-family: initial;font-size: 24px;color: #4f4a4a;margin-top: 8px;">List of Participants</h1>
+	     </div>
+    </div>
+    <form method="post" style="margin-top:30px; margin-bottom: 20px; margin-bottom: 120px;">
+    <div class="row">
+         
+		<div class="search" style="width: 912px;height: 73px;margin: 0 auto;background: #fff;padding-top: 16px;padding-left: 16px;padding-bottom: 16px;">
+    <div class="col-md-3" style="padding-left: 0px;">
+        <div class="field1">
+            <input type="text" id="name"  class="form-control name_validation required_validation_for " placeholder="Full Name" style="width: 209px;height: 40px;padding: 12px;"/>
+        </div>
+    </div> 
+    <div class="col-md-4">
+        <div class="field2">
+            <input type="text" id="email" class="form-control name_validation email_validation required_validation_for" placeholder="E-mail address"  style="width:268px;height: 40px;padding: 12px;"/>
+         </div>
+    </div>
+    <div class="col-md-3">
+        <div class="field2">
+            <input type="text" id="number" class="form-control name_validation required_validation_for number_validation" maxlength="10" placeholder="Phone Number" style="width: 195px;
+    height: 40px;padding: 12px;"/>
+            </div>
+    </div>
+    <div class="col-md-2">
+    <a class="btn btn-primary  create_btn"  style="width: 109px;height: 40px;background: rgba(233, 226, 226, 0.49);color: #221e1e;font-size: 18px;padding-top: 8px;font-family: -webkit-pictograph;">Add new</a>
+    
+    </div>
+
+    </form>
+	   </div>
+	<div>
+    <div class="clearfix"></div>
+  
+    <div class="table-responsive" style="margin-top: 8px;">
+	<div class="output" style="width: 912px;height: 222px;margin: 0 auto; background: #fff;padding-top: 16px;padding-left: 16px;padding-bottom: 16px;padding-right: 16px;">
+    <table class="table show_table" style="display: none;">
+    <thead>
+    <tr>
+    <th>Name</th>
+    <th>E-mail address</th>
+    <th>Phone Number</th>
+    <th>Action</th>
+    </tr>    
+    </thead>
+    <tbody>
+    </tbody>
+    </table>
+    </div>
+	</div>
+    </div>
+    <script type="text/javascript">
+$(document).ready(function(){
+    function ValidateEmail(email) {
+        var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        return expr.test(email);
+    };
+      
+   $(".email_validation").blur(function () {
+        if (!ValidateEmail($(this).val())) {
+       $(this).val("");
+        }
+        else {
+                       
+            return  true;
+        }
+    });
+    
+   
+    $(document).on('keydown', '.name_validation', function(e) {
+    if (e.which === 32 &&  e.target.selectionStart === 0) {return false;}  });
+    
+      $(".number_validation").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+             // Allow: Ctrl+A, Command+A
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+             // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40)) {
+                 // let it happen, don't do anything
+                 return;
+        }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+})
+</script>
+
+ <script type="text/javascript">
+          $(document).ready(function(){
+                
+                $(document).on('click','.create_btn',function(e){
+                
+                var check_required_field='';        
+                $(".required_validation_for").each(function(){
+                var val22 = $(this).val(); 
+                if (!val22){
+                check_required_field ='check_error';
+                $('.error_show').show();
+                $(this).css("border-color","blue");
+                $(this).css("border-color","red");
+                
+                } 
+                
+                $(this).on('keypress change',function(){
+                    $('.error_show').hide();
+                $(this).css("border-color","blue");
+                });
+                
+                });
+                
+                if(check_required_field)
+                { 
+                e.preventDefault();
+                 
+                $('.error_show').show();
+                return false;
+                }  
+                else {
+                $('.error_show').hide();
+                $('.show_table').show();
+                  
+                var name_val=$('#name').val();
+                var email_val=$('#email').val();
+                var number_val=$('#number').val();
+                if($(this).hasClass('vijay'))
+                {
+                    $(".Update_class").children("td.name").text(name_val);
+                    $(".Update_class").children("td.email").text(email_val);
+                    $(".Update_class").children("td.number").text(number_val);
+                }
+                else
+                {
+                  $('.show_table').append('<tr class="tr_class"><td class="name" >'+name_val+'</td><td class="email">'+email_val+'</td><td class="number">'+number_val+'</td> <td><ul style="padding: 0px;"><li style="list-style: none; display: inline-block;color: #757575;font-size: 14px;line-height: 16px;font-weight: 500;margin-left: 6px;"><a class="edit_btn" style="cursor:pointer;"><i class="fa fa-pencil edit_btn" ></i></li><li style="list-style: none; display: inline-block;color: red;font-size: 14px;margin-left: 6px;"><a class="click_remove" style="cursor:pointer;"><i class="fa fa-trash-o " ></i></a></li></ul></td></tr>');
+                }
+                $('#name').val('');
+                $('#email').val('');
+                $('#number').val('');
+                $('.create_btn').removeClass('vijay');
+                $('.tr_class').removeClass('Update_class');
+                }
+});
+
+$(document).on('click','.click_remove',function(){
+   $(this).closest('tr').remove();
+})
+
+   
+         $(document).on('click','.edit_btn',function(){
+            $('.create_btn').text('Save');
+             $('.create_btn').addClass('vijay');
+             $(this).closest('tr').addClass("Update_class");
+             var name=$(this).closest('tr').children('.name').text();
+             var email=$(this).closest('tr').children('.email').text();
+             var number=$(this).closest('tr').children('.number').text();
+             $('#name').val(name);
+                $('#email').val(email);
+                $('#number').val(number);
+    
+          });
+    });
+    </script>
+</body>
+</html>
